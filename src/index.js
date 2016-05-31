@@ -127,7 +127,7 @@ class APIExplorer {
       store.dispatch(loadSpec(config))
     }
 
-    store.dispatch(headers(this.headers))
+    store.dispatch(headers(this.headers, true))
 
     // Render UI
     render(<Root store={store} />, document.getElementById(domAnchor))

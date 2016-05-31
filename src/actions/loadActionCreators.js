@@ -4,8 +4,8 @@ export function apiConfigurations (apiConfigurations) {
   return { type: types.API_CONFIGURATIONS, payload: apiConfigurations }
 }
 
-export function headers (headers) {
-  return { type: types.CONFIG_HEADERS, headers }
+export function headers (headers, startup = false) {
+  return { type: types.CONFIG_HEADERS, headers, startup }
 }
 
 export function load (config) {
