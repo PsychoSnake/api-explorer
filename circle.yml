@@ -6,8 +6,6 @@ machine:
   node:
     version: v6.9.5
 
-deployment:
-  npm:
-    tag: /v[0-9]+(\.[0-9]+)*/
-    commands:
-      - npm set init.author.name "Tiago Lopes"
+test:
+  post:
+    test-dependencies
