@@ -4,7 +4,7 @@
   "description": "API Explorer (live documentation) for Swagger",
   "main": "dist/APIExplorer.umd.js",
   "scripts": {
-    "test-dependencies": "npm-dependency-analyzer",
+    "test-dependencies": "node npm-dependency-analyzer/bin/npm-dependency-analyzer.js",
     "prestart": "npm run build",
     "build": "NODE_ENV=production webpack --config build/webpack.prod.config",
     "start": "NODE_ENV=production node server-prod.js",
@@ -98,7 +98,6 @@
     "babel-eslint": "^7.1.1",
     "babel-loader": "^5.0.0",
     "babel-plugin-react-transform": "1.1.0",
-    "npm-dependency-analyzer": "0.0.3",
     "babel-runtime": "5.8.29",
     "chai": "3.4.0",
     "chai-immutable": "1.4.0",

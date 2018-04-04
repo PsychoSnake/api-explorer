@@ -1,6 +1,6 @@
-dependencies:
-  pre:
-    - echo Using "$NPM_TOKEN" to authenticate in NPM
+machine:
+  node:
+    version: v6.9.5
 
 general:
   artifacts:
