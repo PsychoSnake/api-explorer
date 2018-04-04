@@ -29,7 +29,10 @@
   "files": [
     "dist"
   ],
-  "engines": {},
+  "engines": {
+    "node": ">=6.0.0",
+     "npm": ">=3.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/sky-uk/api-explorer.git"
