@@ -29,7 +29,8 @@
   "files": [
     "dist"
   ],
-  "engines": {},
+  "engines": {
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/sky-uk/api-explorer.git"
@@ -72,6 +73,7 @@
     "marked": "0.3.5",
     "moment": "2.13.0",
     "morgan": "1.6.1",
+    "npm-dependency-analyzer": "0.0.2",
     "react": "0.14.0",
     "react-dock": "0.2.3",
     "react-dom": "0.14.0",
@@ -95,7 +97,6 @@
     "babel-eslint": "^7.1.1",
     "babel-loader": "^5.0.0",
     "babel-plugin-react-transform": "1.1.0",
-    "npm-dependency-analyzer": "0.0.3",
     "babel-runtime": "5.8.29",
     "chai": "3.4.0",
     "chai-immutable": "1.4.0",
