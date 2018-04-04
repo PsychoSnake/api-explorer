@@ -7,6 +7,11 @@
       "from": "commander@^2.15.1",
       "resolved": "https://registry.npmjs.org/commander/-/commander-2.15.1.tgz"
     },
+    "executive": {
+      "version": "1.5.13",
+      "from": "executive",
+      "resolved": "https://registry.npmjs.org/executive/-/executive-1.5.13.tgz"
+    },
     "npm": {
       "version": "5.8.0",
       "from": "npm",

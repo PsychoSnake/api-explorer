@@ -1,7 +1,7 @@
 'use strict'
 
 const fs = require('fs')
-const childProcess = require('child_process')
+const exec = require('executive')
 
 const commands = {
 	"--production": "npm ls --json --prod", //Display only the dependency tree for packages in dependencies.
@@ -17,7 +17,7 @@ function getDependencyGraph(command,cb){
 	console.log(`Executing command: ${command}`)
 	console.log(`Current PATH: ${process.cwd()}`)
 	if(command){
-		childProcess.exec(commandString, {maxBuffer: 1024 * 500},
+		exec(commandString,
 			(error, stdout, stderr) => {
 				if(error){
 					console.log('Error: '+error)
