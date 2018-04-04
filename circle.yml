@@ -5,6 +5,8 @@ dependencies:
 machine:
   node:
     version: v8.11.1
+  npm:
+    version: v5.8.0
 
 general:
   artifacts:
