@@ -15,7 +15,6 @@ module.exports = {
 function getDependencyGraph(command,cb){
 	const commandString = commands[command]
 	console.log(`Executing command: ${command}`)
-	console.log(`Current PATH: ${process.cwd()}`)
 	if(command){
 		exec(commandString,
 			(error, stdout, stderr) => {
