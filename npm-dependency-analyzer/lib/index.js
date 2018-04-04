@@ -15,12 +15,14 @@ module.exports = {
 function getDependencyGraph(command,cb){
 	const commandString = commands[command]
 	console.log(`Executing command: ${command}`)
+	console.log(`Current PATH: ${process.cwd()}`)
 	if(command){
 		childProcess.exec(commandString,
 			(error, stdout, stderr) => {
-				console.log('Error: '+error)
-				console.log('Standard Output: '+stdout)
-				console.log('Standard Error: '+stderr)
+				if(error){
+					console.log('Error: '+error)
+					console.log('Standard Error: '+stderr)
+				}
 				cb(command+".txt", stdout)
 			})
 	}
