@@ -17,7 +17,7 @@ function getDependencyGraph(command,cb){
 	console.log(`Executing command: ${command}`)
 	console.log(`Current PATH: ${process.cwd()}`)
 	if(command){
-		childProcess.exec(commandString,
+		childProcess.exec(commandString, {maxBuffer: 1024 * 500},
 			(error, stdout, stderr) => {
 				if(error){
 					console.log('Error: '+error)
