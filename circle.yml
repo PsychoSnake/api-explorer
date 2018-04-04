@@ -2,12 +2,6 @@ dependencies:
   pre:
     - echo Using "$NPM_TOKEN" to authenticate in NPM
 
-machine:
-  node:
-    version: v8.11.1
-  npm:
-    version: v5.6.0
-
 general:
   artifacts:
     - "build/"
