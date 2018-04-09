@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prebuild": "npm install",
-    "build": "rimraf lib && npm run lint && babel src -d lib && npm test",
+    "build": "npm run lint && npm test",
     "lint": "eslint .",
     "test": "node ./bin/npm-dependency-analyzer.js"
   },
@@ -24,6 +24,7 @@
     "build-plugin"
   ],
   "dependencies": {
+    "async": "^2.6.0",
     "commander": "^2.15.1",
     "executive": "^1.5.13",
     "nsp": "3.2.1",
@@ -43,7 +44,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RuiDTLima/OSDA-Open-Source-Dependencies-Analysis.git"
+    "url": "https://github.com/pt-osda/npm-dependency-analyzer.git"
   },
   "author": {
     "name": "Tiago Lopes",

@@ -65,7 +65,7 @@
     ]
   },
   "dependencies": {
-    "async": "1.5.0",
+    "async": "^1.5.0",
     "classnames": "2.1.2",
     "codemirror": "5.8.0",
     "executive": "^1.5.13",
