@@ -5,21 +5,27 @@
  * and writes it's content to a new file on a build folder
  */  
 
+/* eslint-disable */
+
+const { getDependencyGraph } =  require('../lib/index')
+const { existsSync, mkdirSync, openSync, writeFileSync, closeSync } = require('fs')
+const { getVulnerabilities } = require('../lib/utils/vulnerabilities')
 
 
-const lib = require('../lib/index')
-const fs = require('fs')
+getVulnerabilities()
 
-if(!fs.existsSync('./build'))
-	fs.mkdirSync('./build')
+/*
+if(!existsSync('./build')) 
+	mkdirSync('./build')
 
-lib.getDependencyGraph("--production", writeFile)
+getDependencyGraph('--production', writeFile)
 
-lib.getDependencyGraph("--development", writeFile)
+getDependencyGraph('--development', writeFile)
 
 
 function writeFile(fileName, data){
-    const fileDescriptor = fs.openSync('build/'+fileName, 'w')
-	fs.writeFileSync(fileDescriptor, data, 'utf-8')
-	fs.closeSync(fileDescriptor)
+	const fileDescriptor = openSync('build/'+fileName, 'w')
+	writeFileSync(fileDescriptor, data, 'utf-8')
+	closeSync(fileDescriptor)
 }
+*/
