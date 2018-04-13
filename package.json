@@ -93,6 +93,7 @@
   },
   "devDependencies": {
     "acorn": "3.1.0",
+    "async": "^2.6.0",
     "babel-core": "^5.0.0",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^5.0.0",
@@ -101,8 +102,10 @@
     "chai": "3.4.0",
     "chai-immutable": "1.4.0",
     "cross-env": "1.0.8",
+    "debug": "^3.1.0",
     "eslint": "^3.0.0",
     "esprima": "2.7.2",
+    "executive": "^1.5.13",
     "expect": "1.8.0",
     "exports-loader": "0.6.2",
     "express": "4.13.3",
