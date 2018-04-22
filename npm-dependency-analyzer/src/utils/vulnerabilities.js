@@ -37,6 +37,8 @@ async function getVulnerabilities (dependencies, cb) {
     requestBody.push(new RequestBody('npm', dependency.title, minVersion))
   }
 
+  fileManager.writeBuildFile('vulnerabilities.json', JSON.stringify(requestBody))
+
   const response = await fetch(getRequest(requestBody))
   if (response.status !== 200) {
     throw new Error('Vulnerabilities Request failed: Status-' + response.status)
