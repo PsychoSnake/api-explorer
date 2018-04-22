@@ -2,32 +2,57 @@
 
 module.exports = getVulnerabilities
 
-const exec  = require('executive')
-const {openSync,writeFileSync,closeSync} = require('fs')
+const fetch = require('isomorphic-fetch')
+const fileManager = require('./file-manager')
+const semver = require('semver')
 
 const debug = require('debug')('Vulnerabilities')
+const {Vulnerability} = require('../report_model')
+const RequestBody = require('../oss-fetch-body')
+
+const getRequest = body => {
+  return new Request('https://ossindex.net/v2.0/package', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(body)
+  })
+}
 
 /**
  * Gets all vulnerabilities on the current project
+ * Need to do POST and send all packages because sending a request for each dependency breaks the server for a bit
  */
-function getVulnerabilities(){
-	debug('Checking Vulnerabilities')
+async function getVulnerabilities (dependencies, cb) {
+  debug('Checking Vulnerabilities')
 
-	exec.quiet('nsp check --reporter json')
-		.then(result => {
-			if(result.error){
-				debug('Error: %0'+result.error)
-				debug('Standard Error: %s'+result.stderr)
-			}
+  const requestBody = []
 
-			debug('Vulnerabilities checked with success')
-			writeFile('vulnerabilities.json', result.stdout)
-		})
-		
-}
+  for (let prop in dependencies) {
+    const dependency = dependencies[prop]
+    const versions = [dependency.main_version, ...dependency.private_versions]
+    const minVersion = versions.sort(semver.compare)[0]
 
-function writeFile(fileName, data){
-	const fileDescriptor = openSync('build/'+fileName, 'w')
-	writeFileSync(fileDescriptor, data, 'utf-8')
-	closeSync(fileDescriptor)
+    requestBody.push(new RequestBody('npm', dependency.title, minVersion))
+  }
+
+  const response = await fetch(getRequest(requestBody))
+  const body = await response.json()
+
+  for (let prop in body) {
+    const vulnerability = body[prop]
+    if (!vulnerability.vulnerabilities) { continue }
+
+    const vulnerabilities = vulnerability.vulnerabilities.map(elem => {
+      return new Vulnerability(elem.title, vulnerability.name,
+        elem.description, elem.references,
+        elem.versions)
+    })
+
+    dependencies[vulnerability.name].vulnerabilities = vulnerabilities
+  }
+
+  fileManager.writeBuildFile('dependencies-vulnerabilities.json', JSON.stringify(dependencies))
+  debug('End process')
 }
