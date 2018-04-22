@@ -55,11 +55,11 @@ function getDependencies (cb) {
  */
 function insertHierarchies (dependencies, {children, pkg}) {
   const modules = { ...pkg.dependencies }
+  const version = semver.coerce(pkg.version).raw
 
   for (let child in children) {
     const childPkg = children[child].package
     let dependency = dependencies[childPkg.name]
-    const version = semver.coerce(pkg.version).raw
 
     if (modules && modules[childPkg.name]) {
       delete modules[childPkg.name]
@@ -81,11 +81,11 @@ function insertHierarchies (dependencies, {children, pkg}) {
   for (let moduleName in modules) { // TODO: Estudar bem esta parte pois esta a aparecer dependencias inexistentes na pasta node_modules
     let dependency = dependencies[moduleName]
     if (!dependencies[moduleName]) {
-      dependency = new Dependency()
+      dependency = new Dependency({title: moduleName, main_version: semver.coerce(modules[moduleName])})
       dependencies[moduleName] = dependency
     }
 
-    dependency.hierarchy.push(pkg.name + '/v' + pkg.version)
+    dependency.hierarchy.push(pkg.name + '/v' + version)
   }
 }
 
