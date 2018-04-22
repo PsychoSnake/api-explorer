@@ -31,7 +31,7 @@ module.exports.Dependency = class Dependency {
 
   initializeDependency (options) {
     this.title = options.title
-    this.main_version = options.version
+    this.main_version = options.main_version
   }
 
   insertHierarchy (options) {

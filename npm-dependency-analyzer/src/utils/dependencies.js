@@ -30,7 +30,7 @@ function getDependencies (cb) {
       let dependency
       if (dependencies[pkg.name]) {
         dependency = dependencies[pkg.name]
-        dependency.initializeDependency({title: pkg.name, version})
+        dependency.initializeDependency({title: pkg.name, main_version: version})
       } else {
         dependency = new Dependency({title: pkg.name, main_version: version})
         dependencies[pkg.name] = dependency
