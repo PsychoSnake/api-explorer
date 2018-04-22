@@ -9,7 +9,6 @@ const debug = require('debug')('Dependencies')
 
 const semver = require('semver')
 
-
 /**
  * Gets all dependencies and builds an object after filtering into a ReportDependency
  * @param {Function} cb callback called when an error occurs or after filtering all dependencies
@@ -37,9 +36,13 @@ function getDependencies (cb) {
         dependencies[pkg.name] = dependency
       }
 
-      licenseManager(dependency, pkg)
+      // licenseManager(dependency, pkg)
 
       insertHierarchies(dependencies, { children: modules[module].children, pkg })
+
+      if (pkg.name === 'fsevents') {
+        console.log(JSON.stringify(dependency))
+      }
     }
 
     debug('Finished filtering dependencies')
@@ -81,11 +84,15 @@ function insertHierarchies (dependencies, {children, pkg}) {
   for (let moduleName in modules) { // TODO: Estudar bem esta parte pois esta a aparecer dependencias inexistentes na pasta node_modules
     let dependency = dependencies[moduleName]
     if (!dependencies[moduleName]) {
-      dependency = new Dependency({title: moduleName, main_version: semver.coerce(modules[moduleName])})
+      dependency = new Dependency()
       dependencies[moduleName] = dependency
     }
 
     dependency.hierarchy.push(pkg.name + '/v' + version)
+
+    if (moduleName === 'fsevents') {
+      console.log(JSON.stringify(dependencies[moduleName]))
+    }
   }
 }
 
