@@ -68,7 +68,7 @@
     "classnames": "2.1.2",
     "codemirror": "5.8.0",
     "history": "1.12.6",
-    "hoek": "3.0.0",
+    "hoek": "4.2.1",
     "immutable": "3.7.5",
     "linq": "3.0.5",
     "marked": "0.3.5",
