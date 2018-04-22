@@ -39,7 +39,7 @@ async function getVulnerabilities (dependencies, cb) {
 
   const response = await fetch(getRequest(requestBody))
   if (response.status !== 200) {
-    throw new Error('Vulnerabilities Request failed')
+    throw new Error('Vulnerabilities Request failed: Status-' + response.status)
   }
   const body = await response.json()
 
