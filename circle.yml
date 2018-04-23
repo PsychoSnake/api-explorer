@@ -5,4 +5,3 @@ machine:
 general:
   artifacts:
     - "build/"
-    - "node_modules/"

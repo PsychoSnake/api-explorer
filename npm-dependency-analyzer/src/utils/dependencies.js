@@ -41,7 +41,7 @@ function getDependencies (cb) {
       insertHierarchies(dependencies, { children: modules[module].children, pkg })
 
       if (pkg.name === 'fsevents') {
-        console.log(JSON.stringify(dependency))
+        console.log('In Dependencies: ' + JSON.stringify(dependency))
       }
     }
 
@@ -91,7 +91,7 @@ function insertHierarchies (dependencies, {children, pkg}) {
     dependency.hierarchy.push(pkg.name + '/v' + version)
 
     if (moduleName === 'fsevents') {
-      console.log(JSON.stringify(dependencies[moduleName]))
+      console.log('In Hierarchy: ' + JSON.stringify(dependencies[moduleName]))
     }
   }
 }

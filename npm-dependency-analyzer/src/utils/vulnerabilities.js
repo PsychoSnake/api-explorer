@@ -31,6 +31,11 @@ async function getVulnerabilities (dependencies, cb) {
 
   for (let prop in dependencies) {
     const dependency = dependencies[prop]
+    if (!dependency.title) { // In case it's a optional dependency and was not needed to install, it's not gonna have a name or version
+      delete dependencies[prop]
+      continue
+    }
+
     const versions = [dependency.main_version, ...dependency.private_versions]
     const minVersion = versions.sort(semver.compare)[0]
 
