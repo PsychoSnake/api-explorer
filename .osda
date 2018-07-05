@@ -3,5 +3,7 @@
   "project_name": "policy-apiexplorer",
   "organization": "sky-uk",
   "repo": "https://github.com/sky-uk/api-explorer",
-  "repo_owner": "sky-uk"
+  "repo_owner": "sky-uk",
+  "invalid_licenses": ["MIT"],
+  "api_cache_time": 10
 }
