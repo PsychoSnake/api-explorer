@@ -132,12 +132,11 @@ function insertHierarchies(dependencies, licensePromises, invalidLicenses, { cur
     const parentDependency = rptDependency.parent.children.find(elem => elem.package.name === moduleName);
     if (rootDependency) {
       simpleVersion = rootDependency.package.version;
-      logger.info('Found version %O', simpleVersion);
     } else if (parentDependency) {
       simpleVersion = parentDependency.package.version;
-      logger.info('Found version %O', simpleVersion);
     }
 
+    logger.info('Found version %O', simpleVersion);
     const version = _semver2.default.coerce(simpleVersion).raw;
     currentDependency.insertChild(moduleName, version);
   }
