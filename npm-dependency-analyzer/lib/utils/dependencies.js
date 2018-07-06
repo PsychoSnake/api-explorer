@@ -127,14 +127,14 @@ function insertHierarchies(dependencies, licensePromises, invalidLicenses, { cur
 
   for (let moduleName in modules) {
     let simpleVersion = '';
-    logger.info(`Dependency ${currentDependency.title}:${currentDependency.version} in module ${moduleName}`)
+    logger.info(`Dependency ${currentDependency.title}:${currentDependency.main_version} with module ${moduleName}`)
     const rootDependency = rootDependencies.find(elem => elem.package.name === moduleName);
     const parentDependency = rptDependency.parent.children.find(elem => elem.package.name === moduleName);
     if (rootDependency) {
-      logger.info('Found Root Dependency');
+      logger.info('Found Root Dependency: %O', rootDependency.package);
       simpleVersion = rootDependency.package.version;
     } else if (parentDependency) {
-      logger.info('Found Parent Dependency');
+      logger.info('Found Parent Dependency: %O', parentDependency.package);
       simpleVersion = parentDependency.package.version;
     }
 
