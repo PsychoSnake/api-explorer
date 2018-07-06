@@ -137,7 +137,6 @@ function insertHierarchies(dependencies, licensePromises, invalidLicenses, { cur
     }
 
     logger.info('Found version %O', simpleVersion);
-    const version = _semver2.default.coerce(simpleVersion).raw;
-    currentDependency.insertChild(moduleName, version);
+    currentDependency.insertChild(moduleName, simpleVersion);
   }
 }
