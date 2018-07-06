@@ -1,6 +1,8 @@
 machine:
   node:
-    version: v8.11.1
+    version: v8.11.3
+  npm:
+    version: v6.1.0
 
 general:
   artifacts:
