@@ -5,7 +5,6 @@ import fileManager from './file-manager'
 
 import fetch from 'isomorphic-fetch'
 import lodash from 'lodash'
-// import semver from 'semver'
 import {Vulnerability} from '../report_model'
 import RequestBody from '../oss-fetch-body'
 import bunyan from 'bunyan'
@@ -16,14 +15,14 @@ const getRequest = (body, cacheTime) => {
   return new Request('http://localhost:8080/npm/dependency/vulnerabilities', {
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': `max-age=${cacheTime}`
+      'Cache-Control': `max-age=${cacheTime || 0}`,
+      'Authorization': `Bearer ${process.env.CENTRAL_SERVER_TOKEN}`
     },
     method: 'POST',
     body: JSON.stringify(body)
   })
 }
 
-// TODO: Need to check for error from the API. In case of error affect the Dependency property for error_info and not put vulnerabilitiesCount
 /**
  * Gets all vulnerabilities on the current project
  * Need to do POST and send all packages because sending a request for each dependency breaks the server for a bit
@@ -49,12 +48,7 @@ export default async function getVulnerabilities (dependencies, cacheTime) {
   const [jsonError, body] = await catchifyPromise(response.json())
 
   if (response.status !== 200) {
-    // throw new Error('Vulnerabilities Request failed: Status-' + response.status)
-    logger.warn('API failed to fetch vulnerabilities: %O', body)
-    dependencies.forEach(elem => {
-      elem.error_info = 'Failed to fetch vulnerabilities'
-    })
-    return dependencies
+    throw new Error('Vulnerabilities Request failed: ' + JSON.stringify(body))
   }
 
   if (jsonError) {
@@ -74,7 +68,7 @@ export default async function getVulnerabilities (dependencies, cacheTime) {
       elem.vulnerabilities.forEach(vulnerability => {
         if (!dependency.vulnerabilities.some(depElem => depElem.id === vulnerability.id)) {
           dependency.vulnerabilities.push(
-            new Vulnerability({
+            new Vulnerability({ // TODO: ver a possibilidade de passar literalmente o objeto vulnerability do forEach() no constructor
               id: vulnerability.id,
               title: vulnerability.title,
               description: vulnerability.description,

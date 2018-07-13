@@ -37,9 +37,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 const logger = _bunyan2.default.createLogger({ name: 'Index' });
 
 const getRequest = body => {
-  return new Request('http://35.234.147.77/report', {
+  return new Request('http://localhost:8080/report', {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer VUkgVGVzdDIwMTgtMDctMTMgMDE6NTM6NDAuNTM3'
     },
     method: 'POST',
     body: JSON.stringify(body)
@@ -55,7 +56,8 @@ function generateReport(policyData, pkg, dependencies) {
     timestamp: new Date(Date.now()).toISOString(),
     organization: policyData.organization,
     repo: policyData.repo,
-    repo_owner: policyData.repo_owner
+    repo_owner: policyData.repo_owner,
+    admin: policyData.admin
   };
 
   const report = new _report_model.Report(reportOptions);

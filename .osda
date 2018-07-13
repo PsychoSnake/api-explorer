@@ -5,5 +5,6 @@
   "repo": "https://github.com/sky-uk/api-explorer",
   "repo_owner": "sky-uk",
   "invalid_licenses": ["MIT"],
+  "admin": "test",
   "api_cache_time": 10
 }
