@@ -115,7 +115,7 @@
     "mocha": "2.3.3",
     "node-libs-browser": "0.5.2",
     "nodemon": "1.8.0",
-    "npm-dependency-analyzer": "^0.6.2",
+    "npm-dependency-analyzer": "^0.6.3",
     "raw-loader": "0.5.1",
     "react-addons-test-utils": "0.14.0",
     "react-transform-hmr": "1.0.0",
